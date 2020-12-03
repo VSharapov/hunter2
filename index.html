@@ -5,7 +5,24 @@
     <title>title</title>
   </head>
   <body>
-  
+    <form>
+      Master passphrase:
+      <input type="password" id="master" />
+    </form>
+    <hr />
+    <table><tr>
+        <td>
+    New entry:<br />
+    Authority:  <input type="text"     id="newAuth" /><br />
+    Identity:   <input type="text"     id="newIden" /><br />
+    Passphrase: <input type="password" id="newPass" /><br />
+        </td>
+        <td>
+          <textarea id='newPW' style="height:100%; width:100%"></textarea>
+        </td>
+    </tr></table>
+    <hr />
+    <div id='pwDB' ></div>
   </body>
 </html>
 
