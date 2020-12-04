@@ -46,4 +46,4 @@ Argon's parameters are tuned to the oldest functional smartphone I can find (an 
 - [ ] [argon2 js](https://en.wikipedia.org/wiki/Argon2)
 - [ ] [AES JS](https://en.wikipedia.org/wiki/AES_implementations#JavaScript)
 
-[1]: https://tiddlywiki.com/ looks to have implemented something very similar, should look into their approach.
+[1]: https://tiddlywiki.com/ "looks to have implemented something very similar, should look into their approach."
