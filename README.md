@@ -13,26 +13,27 @@ A minimalist password manager
         - or replace an existing entry.
 
 ```
-╔════════════════════════════════════╗
-║      argon2di(pass,salt,len=256)─╮ ║
-║╔═════════════════▲═▲═╗           │ ║
-║║╔═Master:══════╗ │ │ ║ aes-256(  │ ║
-║║║*************…──╯ │ ║   nonce,  │ ║
-║║╚══════════════╝   │ ║   key ◀───╯ ║
-║║===================│=║ )           ║
-║║╔═Authority:═══╗   │ ║             ║
-║║║gmail.com     ────╯ ║             ║
-║║╚══════════════╝     ║             ║
-║║╔═Plaintext:═══╗     ║             ║
-║║║hunter2       ║     ║             ║
-║║╚══════════════╝     ║             ║
-║║╔═Ciphertext:══╗     ║             ║
-║║║n=1;qyLq5iQ+V…║     ║             ║
-║║╚══════════════╝     ║             ║
-║║---------------------║             ║
-║║╔═Authority:═══╗     ║             ║
-║╚═════════════════════╝             ║
-╚════════════════════════════════════╝
+  argon2di(pass,salt,len=256)+--+
+                                |
++------------------+ aes-256(   |
+|                  |   nonce,   |
+| +-Master:------+ |   key)<----+
+| |*************…| |
+| +--------------+ |
+|                  |
+| +-Authority:---+ |
+| |gmail.com     | |
+| +--------------+ |
+| +-Plaintext:---+ |
+| |hunter2       | |
+| +--------------+ |
+| +-Ciphertext:--+ |
+| |n=1;qyLq5iQ+V…| |
+| +--------------+ |
+|                  |
+| +-Authority:---+ |
+| |github.com    | |
++------------------+
 ```
 
 Entering plaintext and submitting increments the nonce at the beginning of the ciphertext
@@ -40,7 +41,7 @@ Entering a master password creates a Decrypt button next to each block
 Argon's parameters are tuned to the oldest functional smartphone I can find (an S2) to use maximum memory and take ~8s to decrypt. These can be changed and saved as advanced parameters.
 
 ## TODO
-- [ ] Fix ugly README diagram - GitHub has some non-monospace font preferences
+- [x] Fix ugly README diagram - GitHub has some non-monospace font preferences
 - [ ] textarea height 100% not working
 - [ ] Use ROT13 for demo
 - [ ] [argon2 js](https://en.wikipedia.org/wiki/Argon2)
