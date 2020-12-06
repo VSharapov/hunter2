@@ -3,26 +3,78 @@
   <head>
     <meta charset="UTF-8">
     <title>title</title>
+    <script>
+      function makeSecret(pass, key) {
+        return rot(pass, key.length);
+      }
+
+      function breakSecret(ciphertext, key) {
+        return rot(ciphertext, 0-key.length);
+      }
+
+      function rot(stringIn, rotAmount) {
+        sets = [
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "abcdefghijklmnopqrstuvwxyz",
+          "0123456789",
+        ];
+        var stringOut = "";
+        for (i in stringIn) {
+          var letter = stringIn[i];
+          for (j in sets) {
+            s = sets[j];
+            if (s.includes(letter)){
+              newIndex = (s.indexOf(letter) + rotAmount) % s.length;
+              letter = s[newIndex];
+              break;
+            }
+          }
+          stringOut += letter;
+        }
+        return stringOut;
+      }
+
+      function decrypt () {
+        var master = document.getElementById('master').value;
+        var pwDB = JSON.parse(document.getElementById('newPW').value);
+        var out = document.getElementById('decoded');
+        for (i in pwDB){
+          entry = pwDB[i];
+          entry['pass'] = breakSecret(entry['pass'], master)
+          out.innerHTML += "Authority: " + entry['auth'] + "<br />"
+          out.innerHTML += "Identity: " + entry['iden'] + "<br />"
+          out.innerHTML += "Password: " + entry['pass'] + "<br />"
+
+        }
+      }
+
+      function encrypt () {
+        var master = document.getElementById('master').value;
+        newAuth = document.getElementById('newAuth').value;
+        newIden = document.getElementById('newIden').value;
+        newPass = document.getElementById('newPass').value;
+        newPass = makeSecret(newPass, master);
+        var newPW = document.getElementById('newPW');
+        pwDB = [];
+        pwDB.push({'auth': newAuth, 'iden': newIden, 'pass': newPass});
+        newPW.value = JSON.stringify(pwDB);
+      }
+    </script>
   </head>
   <body>
     <form>
       Master passphrase:
       <input type="password" id="master" />
+      <input type="button" value="decrypt" onclick="decrypt()" />
     </form>
     <hr />
-    <table><tr>
-        <td>
     New entry:<br />
-    Authority:  <input type="text"     id="newAuth" /><br />
-    Identity:   <input type="text"     id="newIden" /><br />
-    Passphrase: <input type="password" id="newPass" /><br />
-        </td>
-        <td>
-          <textarea id='newPW' style="height:100%; width:100%"></textarea>
-        </td>
-    </tr></table>
-    <hr />
-    <div id='pwDB' ></div>
+    Authority:  <input type="text"     id="newAuth" value="bash.org" /><br />
+    Identity:   <input type="text"     id="newIden" value="AzureDiamond" /><br />
+    Passphrase: <input type="password" id="newPass" value="hunter2" /><br />
+    <input type="button" value="encrypt" onclick="encrypt()" /><br />
+    <textarea id="newPW"></textarea><br />
+    <div id="decoded"></div>
   </body>
 </html>
 
