@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>title</title>
     <script>
+      var pwDB = "[
+        {"auth":"bash.org","iden":"AzureDiamond","pass":"uhagre5"},
+        {"auth":"example.com","iden":"user","pass":"cnff"}
+      ]";
+
       function makeSecret(pass, key) {
         return rot(pass, key.length);
       }
