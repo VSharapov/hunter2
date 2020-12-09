@@ -40,6 +40,10 @@
       }
 
       function decrypt () {
+        if (document.getElementById('newPW').value == ""){
+            document.getElementById('newPW').value = JSON.stringify(pwDB);
+        } // Should run on init only
+
         var master = document.getElementById('master').value;
         var pwDB = JSON.parse(document.getElementById('newPW').value);
         var out = document.getElementById('decoded');
