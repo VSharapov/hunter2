@@ -30,6 +30,8 @@
             s = sets[j];
             if (s.includes(letter)){
               newIndex = (s.indexOf(letter) + rotAmount) % s.length;
+              newIndex = (newIndex + s.length) % s.length; // JS negative modulo workaround
+              //console.log(letter, s.indexOf(letter), newIndex, s[newIndex]);
               letter = s[newIndex];
               break;
             }
