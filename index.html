@@ -47,15 +47,15 @@
         } // Should run on init only
 
         var master = document.getElementById('master').value;
-        var pwDB = JSON.parse(document.getElementById('newPW').value);
+        if (master == "") {return;}
+        pwDB = JSON.parse(document.getElementById('newPW').value);
         var out = document.getElementById('decoded');
         for (i in pwDB){
           entry = pwDB[i];
           entry['pass'] = breakSecret(entry['pass'], master)
           out.innerHTML += "Authority: " + entry['auth'] + "<br />"
           out.innerHTML += "Identity: " + entry['iden'] + "<br />"
-          out.innerHTML += "Password: " + entry['pass'] + "<br />"
-
+          out.innerHTML += "Password: " + entry['pass'] + "<br /><hr />"
         }
       }
 
@@ -72,7 +72,7 @@
       }
     </script>
   </head>
-  <body>
+  <body onload="decrypt()">
     <form>
       Master passphrase:
       <input type="password" id="master" />
