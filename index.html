@@ -53,10 +53,23 @@
         for (i in pwDB){
           entry = pwDB[i];
           entry['pass'] = breakSecret(entry['pass'], master)
-          out.innerHTML += "Authority: " + entry['auth'] + "<br />"
-          out.innerHTML += "Identity: " + entry['iden'] + "<br />"
-          out.innerHTML += "Password: " + entry['pass'] + "<br /><hr />"
+          addOrUpdateDecodedEntry(entry);
         }
+      }
+
+      function addOrUpdateDecodedEntry(e) {
+        authID = e['auth'] + '@' + e['iden'];
+        var target = document.getElementById(authID);
+        if (target == null){
+          var decoded = document.getElementById('decoded');
+          decoded.innerHTML += '<div id="' + authID + '"></div>';
+          target = document.getElementById(authID);
+        }
+        newContent = ""
+        newContent += "<hr />"
+        newContent += "" + e['iden'] + '<span style="font-weight: bold;"> @ </span>' + e['auth'] + '<br />';
+        newContent += '<input type="text" value="' + e['pass'] + '" />'
+        target.innerHTML = newContent;
       }
 
       function encrypt () {
