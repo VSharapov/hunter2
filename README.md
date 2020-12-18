@@ -1,6 +1,10 @@
 # hunter2
 A minimalist password manager
 
+## Demo (work in progress)
+[https://vsharapov.github.io/hunter2/](https://vsharapov.github.io/hunter2/)
+
+
 ## Concept:
 
 - It's a password manager that doesn't need a chrome plugin, or an `.exe` run as administrator.
@@ -43,7 +47,7 @@ Argon's parameters are tuned to the oldest functional smartphone I can find (an 
 ## TODO
 - [x] Fix ugly README diagram - GitHub has some non-monospace font preferences
 - [ ] textarea height 100% not working
-- [ ] Use ROT13 for demo
+- [x] Use ROT13 for demo
 - [ ] [argon2 js](https://en.wikipedia.org/wiki/Argon2)
 - [ ] [AES JS](https://en.wikipedia.org/wiki/AES_implementations#JavaScript)
 
