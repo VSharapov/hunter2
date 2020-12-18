@@ -88,7 +88,7 @@
   <body onload="decrypt()">
     <form>
       Master passphrase:
-      <input type="password" id="master" />
+      <input type="password" id="master" oninput="decrypt()" onchange="decrypt()" />
       <input type="button" value="decrypt" onclick="decrypt()" />
     </form>
     <hr />
